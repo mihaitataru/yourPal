@@ -1,4 +1,4 @@
-package com.fourEngineers.yourPal;
+package com.fourengineering.yourpal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
