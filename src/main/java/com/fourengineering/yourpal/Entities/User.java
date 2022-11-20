@@ -3,6 +3,7 @@ package com.fourengineering.yourpal.Entities;
 import com.fourengineering.yourpal.Misc.BadHabits;
 import com.fourengineering.yourpal.Misc.Hobbies;
 import com.fourengineering.yourpal.Repositories.UserRepository;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.lang.reflect.Array;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@Component
 public class User {
 
     @Id
@@ -21,7 +23,40 @@ public class User {
     @Column(name = "Username")
     private String username;
 
-    @Column(name = "Email")
+    @Column(name = "name")
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Column(name = "surname")
+    private String surname;
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    @Column(name = "Password")
+    private byte[] password;
+
+    public byte[] getPassword() {
+        return password;
+    }
+
+    public void setPassword(byte[] password) {
+        this.password = password;
+    }
+
+    @Column( unique = true, name = "Email")
     private String email;
 
 
@@ -36,6 +71,23 @@ public class User {
 
     @Column(name = "BadHabits")
     private BadHabits badHabits;
+
+    @Column(name = "Rating")
+   private double rating;
+
+    @Column(name = "Connections")
+    private String connections;
+
+    @Column(nullable = true, length = 64)
+    private String photos;
+
+    public String getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(String photos) {
+        this.photos = photos;
+    }
 
     public long getId() {
         return id;
@@ -94,6 +146,21 @@ public class User {
         this.badHabits = badHabits;
     }
 
+    public String getConnections() {
+        return connections;
+    }
+
+    public void setConnections(String connections) {
+        this.connections = connections;
+    }
+        public double getRating() {
+      return rating;
+    }
+
+   public void setRating(double rating) {
+       this.rating = rating;
+   }
+
     public List<User> getPossibleConnections(UserRepository repo){
         List<User> users1 = new ArrayList<User>();
         List<User> users2 = new ArrayList<User>();
@@ -108,5 +175,10 @@ public class User {
                 users1.remove(i);
         }
         return users1;
+    }
+    public static boolean validateRating(double rating){
+        if(rating>10 || rating<0)
+            return false;
+        return true;
     }
 }

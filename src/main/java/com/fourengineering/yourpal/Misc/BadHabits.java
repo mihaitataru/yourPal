@@ -5,5 +5,6 @@ public enum BadHabits {
     GAMBLING,
     DRINKING,
     DRUGS,
-    UNHEALTHY_EATING
+    UNHEALTHY_EATING,
+    PROCRASTINATING
 }
